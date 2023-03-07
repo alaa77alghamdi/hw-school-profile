@@ -16,21 +16,21 @@ model Student {
   name String
   age Int
   major String
-  student1 ClassRoom[]
+  classRoomid String
+  classRoom    ClassRoom? @relation(fields: [classRoomid], references: [id])
   }
 
 
   model Teacher {
     id String @id @default(uuid())
     name String
-    teacher1 ClassRoom[]
+  classRoomid String
+  classRoom    ClassRoom? @relation(fields: [classRoomid], references: [id])
   }
 
   model ClassRoom{
     id String @id @default(uuid())
     name String
-    teacherID String
-    studentID String
-    student Student @relation(fields: [studentID], references: [id])
-    teacher Teacher @relation(fields: [teacherID], references: [id])
+     student Student[]
+  teacher Teacher[]
   }
